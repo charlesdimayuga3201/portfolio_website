@@ -56,7 +56,7 @@ export default function HeroSection() {
     >
       {/* Floating particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* {Array.from({ length: 20 }).map((_, i) => (
+        {Array.from({ length: 20 }).map((_, i) => (
           <motion.div
             key={i}
             className="absolute rounded-full"
@@ -77,9 +77,9 @@ export default function HeroSection() {
               delay: Math.random() * 3,
             }}
           />
-        ))} */}
+        ))}
 
-        {Array.from({ length: particleCount }).map((_, i) => (
+        {/* {Array.from({ length: particleCount }).map((_, i) => (
           <motion.div
             key={i}
             className="absolute rounded-full"
@@ -101,7 +101,7 @@ export default function HeroSection() {
               delay: Math.random() * 3,
             }}
           />
-        ))}
+        ))} */}
 
       </div>
 
