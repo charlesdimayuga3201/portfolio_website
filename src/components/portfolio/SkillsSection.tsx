@@ -33,9 +33,25 @@ const categories = ["All", ...Array.from(new Set(skills.map((s) => s.category)))
 
 function SkillBar({ skill, delay }: { skill: Skill; delay: number }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
   const isMobile = useIsMobile();
+  const inView = useInView(ref, { once: true, margin: "-50px" });
 
+  if (isMobile) {
+    return (
+      <div ref={ref} className="mb-5">
+        <div className="mb-1.5 flex items-center justify-between">
+          <span className="text-sm font-medium text-foreground">{skill.name}</span>
+          <span className="text-xs font-semibold text-primary">{skill.level}%</span>
+        </div>
+        <div className="h-2 w-full overflow-hidden rounded-full bg-secondary">
+          <div
+            style={{ width: `${skill.level}%` }}
+            className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
+          />
+        </div>
+      </div>
+    );
+  }
   return (
     <motion.div
       ref={ref}
@@ -49,14 +65,14 @@ function SkillBar({ skill, delay }: { skill: Skill; delay: number }) {
         <span className="text-xs font-semibold text-primary">{skill.level}%</span>
       </div>
       <div className="h-2 w-full overflow-hidden rounded-full bg-secondary">
-        {/* <motion.div
+        <motion.div
           initial={{ width: 0 }}
           animate={inView ? { width: `${skill.level}%` } : {}}
           transition={{ duration: 1, delay: delay + 0.2, ease: "easeOut" }}
           className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
-        /> */}
+        />
 
-           {isMobile ? (
+           {/* {isMobile ? (
           <div
             style={{ width: `${skill.level}%` }}
             className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
@@ -68,7 +84,7 @@ function SkillBar({ skill, delay }: { skill: Skill; delay: number }) {
             transition={{ duration: 1, delay: delay + 0.2, ease: "easeOut" }}
             className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
           />
-        )}
+        )} */}
       </div>
     </motion.div>
   );
