@@ -2,7 +2,7 @@
 
 A personal portfolio website built with a modern full-stack React setup, featuring smooth animations, accessible UI components, and a clean developer experience.
 
-🔗 **Live Demo:** [portfolio-website-three-gilt-27.vercel.app](https://portfolio-website-three-gilt-27.vercel.app)
+🔗 **Live Demo:** [portfolio-website-three-gilt-27.vercel.app](https://portfolio-website-l6jl.vercel.app/)
 
 ---
 
@@ -137,5 +137,5 @@ This project is open source and available under the [MIT License](LICENSE).
 **Charles Dimayuga**
 
 - GitHub: [@charlesdimayuga3201](https://github.com/charlesdimayuga3201)
-- Portfolio: [portfolio-website-three-gilt-27.vercel.app](https://portfolio-website-three-gilt-27.vercel.app)
+- Portfolio: [portfolio-website-three-gilt-27.vercel.app](https://portfolio-website-l6jl.vercel.app/)
 - Email: dimayugacharleskeane@gmail.com
