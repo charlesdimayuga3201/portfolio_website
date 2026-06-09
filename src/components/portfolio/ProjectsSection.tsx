@@ -10,8 +10,8 @@ const projects = [
     tech: ["React", "Tailwind CSS", "Framer Motion"],
     icon: Code2,
     type: "personal",
-    github: "https://github.com",
-    demo: "https://example.com",
+    github: "https://github.com/charlesdimayuga3201/portfolio_website",
+    demo: "https://portfolio-website-l6jl.vercel.app/",
     color: "from-primary to-cyan",
   },
   {
@@ -151,13 +151,13 @@ export default function ProjectsSection() {
                   </a>
                 </div> */}
 
-                <div className="mt-6 flex gap-3">
-          {project.type === "personal" && project.github && (
+              <div className="mt-6 flex gap-3 z-10">
+             {project.type === "personal" && project.github && (
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-border bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground transition-all hover:bg-secondary/80"
+              className="z-10 inline-flex items-center gap-2 rounded-lg border border-border bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground transition-all hover:bg-secondary/80"
             >
               <Github size={16} />
               Code
