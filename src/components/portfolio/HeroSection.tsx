@@ -40,6 +40,15 @@ export default function HeroSection() {
     return () => clearTimeout(timer);
   }, [displayed, isDeleting, roleIndex]);
 
+    const [particleCount, setParticleCount] = useState(8);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const update = () => setParticleCount(mq.matches ? 12 : 0);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   return (
     <section
       id="home"
@@ -47,7 +56,7 @@ export default function HeroSection() {
     >
       {/* Floating particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {Array.from({ length: 20 }).map((_, i) => (
+        {/* {Array.from({ length: 20 }).map((_, i) => (
           <motion.div
             key={i}
             className="absolute rounded-full"
@@ -68,7 +77,32 @@ export default function HeroSection() {
               delay: Math.random() * 3,
             }}
           />
+        ))} */}
+
+        {Array.from({ length: particleCount }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full"
+            style={{
+              width: Math.random() * 4 + 2,
+              height: Math.random() * 4 + 2,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              background: i % 2 === 0 ? "var(--color-primary)" : "var(--color-accent)",
+              willChange: "transform, opacity",
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.2, 0.8, 0.2],
+            }}
+            transition={{
+              duration: Math.random() * 4 + 3,
+              repeat: Infinity,
+              delay: Math.random() * 3,
+            }}
+          />
         ))}
+
       </div>
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
