@@ -78,14 +78,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Charles Dimayuga | IT Portfolio" },
       { property: "og:description", content: "Personal portfolio of Charles Dimayuga - Full-Stack Developer." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@CharlesDimayuga" },
+      // { name: "twitter:card", content: "summary" },
+      // { name: "twitter:site", content: "@CharlesDimayuga" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
+      {
+      rel: "icon",
+      type: "image/png",
+      href: "/src/assets/ck.png"
+      },  
     ],
   }),
   shellComponent: RootShell,
