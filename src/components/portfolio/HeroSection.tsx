@@ -6,10 +6,7 @@ import { ArrowDown, Github, Linkedin, Twitter, FileText } from "lucide-react";
 // const resumePdf = "/files/Resume-Charles_Keane_Dimayuga.pdf";
 
 const resumePdf = "/files/Resume-Charles_Keane_Dimayuga.pdf";
-const roles = [
-  "Full-Stack Developer",
-  "Junior Programmer", 
-];
+const roles = ["Full-Stack Developer", "Junior Programmer"];
 
 export default function HeroSection() {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -40,7 +37,7 @@ export default function HeroSection() {
     return () => clearTimeout(timer);
   }, [displayed, isDeleting, roleIndex]);
 
-    const [particleCount, setParticleCount] = useState(8);
+  const [particleCount, setParticleCount] = useState(8);
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
     const update = () => setParticleCount(mq.matches ? 12 : 0);
@@ -102,7 +99,6 @@ export default function HeroSection() {
             }}
           />
         ))} */}
-
       </div>
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
@@ -122,8 +118,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.15 }}
           className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight"
         >
-          Hi, I'm{" "}
-          <span className="text-gradient">Charles Keane Dimayuga</span>
+          Hi, I'm <span className="text-gradient">Charles Keane Dimayuga</span>
         </motion.h1>
 
         <motion.div
@@ -142,7 +137,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.45 }}
           className="mt-6 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-muted-foreground"
         >
-          Passionate IT professional specializing in full-stack development. I have experience with 
+          Passionate IT professional specializing in full-stack development. I have experience with
           in-house development.
         </motion.p>
 
@@ -184,7 +179,10 @@ export default function HeroSection() {
         >
           {[
             { icon: Github, href: "https://github.com/charlesdimayuga3201" },
-            { icon: Linkedin, href: "https://www.linkedin.com/in/charles-keane-dimayuga-b988a2251/" },
+            {
+              icon: Linkedin,
+              href: "https://www.linkedin.com/in/charles-keane-dimayuga-b988a2251/",
+            },
             // { icon: Twitter, href: "https://twitter.com" },
           ].map(({ icon: Icon, href }, i) => (
             <a

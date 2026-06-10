@@ -1,6 +1,19 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, Github, Code2, ShoppingCart, Network, GraduationCap,Warehouse, Server, Bot, Box, Blocks, FileLock2 } from "lucide-react";
+import {
+  ExternalLink,
+  Github,
+  Code2,
+  ShoppingCart,
+  Network,
+  GraduationCap,
+  Warehouse,
+  Server,
+  Bot,
+  Box,
+  Blocks,
+  FileLock2,
+} from "lucide-react";
 
 const projects = [
   {
@@ -69,7 +82,6 @@ const projects = [
     demo: "https://example.com",
     color: "from-purple to-accent",
   },
-  
 ];
 
 export default function ProjectsSection() {
@@ -106,7 +118,9 @@ export default function ProjectsSection() {
               transition={{ duration: 0.5, delay: i * 0.15 }}
               className="glass-card glow-border rounded-2xl overflow-hidden group"
             >
-              <div className={`h-48 bg-gradient-to-br ${project.color} opacity-80 flex items-center justify-center relative overflow-hidden`}>
+              <div
+                className={`h-48 bg-gradient-to-br ${project.color} opacity-80 flex items-center justify-center relative overflow-hidden`}
+              >
                 <div className="absolute inset-0 bg-black/20" />
                 <project.icon size={48} className="text-white/90 relative z-10" />
                 {/* Animated overlay on hover */}
@@ -151,20 +165,20 @@ export default function ProjectsSection() {
                   </a>
                 </div> */}
 
-              <div className="mt-6 flex gap-3 z-10">
-             {project.type === "personal" && project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="z-10 inline-flex items-center gap-2 rounded-lg border border-border bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground transition-all hover:bg-secondary/80"
-            >
-              <Github size={16} />
-              Code
-            </a>
-          )}
+                <div className="mt-6 flex gap-3 z-10">
+                  {project.type === "personal" && project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="z-10 inline-flex items-center gap-2 rounded-lg border border-border bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground transition-all hover:bg-secondary/80"
+                    >
+                      <Github size={16} />
+                      Code
+                    </a>
+                  )}
 
-          {/* {project.type === "personal" && project.demo && (
+                  {/* {project.type === "personal" && project.demo && (
             <a
               href={project.demo}
               target="_blank"
@@ -176,15 +190,17 @@ export default function ProjectsSection() {
             </a>
           )} */}
 
-  {project.type === "inhouse" && (
-    <a  target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-border bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground transition-all hover:bg-secondary/80">
-        <FileLock2 size={16} />
-      Internal System
-    </a>
-  )}
-</div>
+                  {project.type === "inhouse" && (
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-lg border border-border bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground transition-all hover:bg-secondary/80"
+                    >
+                      <FileLock2 size={16} />
+                      Internal System
+                    </a>
+                  )}
+                </div>
               </div>
             </motion.div>
           ))}

@@ -72,7 +72,7 @@ function SkillBar({ skill, delay }: { skill: Skill; delay: number }) {
           className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
         />
 
-           {/* {isMobile ? (
+        {/* {isMobile ? (
           <div
             style={{ width: `${skill.level}%` }}
             className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
@@ -114,8 +114,8 @@ export default function SkillsSection() {
             My <span className="text-gradient">Expertise</span>
           </h2>
           <p className="mt-4 max-w-xl mx-auto text-muted-foreground leading-relaxed">
-            A broad skill set spanning development, infrastructure, and security —
-            continuously evolving with the latest technologies.
+            A broad skill set spanning development, infrastructure, and security — continuously
+            evolving with the latest technologies.
           </p>
         </motion.div>
 

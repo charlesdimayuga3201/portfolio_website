@@ -60,7 +60,7 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
@@ -82,7 +82,28 @@ export default function Navbar() {
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
+      {mobileOpen && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          className="md:hidden glass overflow-hidden"
+        >
+          <div className="flex flex-col gap-2 px-6 py-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className="py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+        </motion.div>
+      )}
     </motion.nav>
   );
 }

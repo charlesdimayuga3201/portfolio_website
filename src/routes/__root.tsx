@@ -73,10 +73,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Charles Dimayuga | IT Portfolio" },
-      { name: "description", content: "Personal portfolio of Charles Dimayuga -  Full-Stack Developer." },
+      {
+        name: "description",
+        content: "Personal portfolio of Charles Dimayuga -  Full-Stack Developer.",
+      },
       { name: "author", content: "Charles Dimayuga" },
       { property: "og:title", content: "Charles Dimayuga | IT Portfolio" },
-      { property: "og:description", content: "Personal portfolio of Charles Dimayuga - Full-Stack Developer." },
+      {
+        property: "og:description",
+        content: "Personal portfolio of Charles Dimayuga - Full-Stack Developer.",
+      },
       { property: "og:type", content: "website" },
       // { name: "twitter:card", content: "summary" },
       // { name: "twitter:site", content: "@CharlesDimayuga" },
@@ -87,10 +93,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       {
-      rel: "icon",
-      type: "image/png",
-      href: "/src/assets/ck.png"
-      },  
+        rel: "icon",
+        type: "image/png",
+        href: "/src/assets/ck.png",
+      },
     ],
   }),
   shellComponent: RootShell,
