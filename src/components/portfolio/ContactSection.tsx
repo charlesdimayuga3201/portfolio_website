@@ -1,18 +1,69 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Send, CheckCircle } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Twitter,
+  Send,
+  CheckCircle,
+  AlertCircle,
+} from "lucide-react";
 
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 export default function ContactSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-  };
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setSubmitted(true);
+  //   setTimeout(() => setSubmitted(false), 3000);
+  // };
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          ...formData,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSubmitted(true);
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        setTimeout(() => setSubmitted(false), 4000);
+      } else {
+        setError(data.message || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Network error. Please check your connection and try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <section id="contact" className="relative py-24 overflow-hidden">
       {/* Background glow */}
@@ -33,8 +84,8 @@ export default function ContactSection() {
             Let's <span className="text-gradient">Connect</span>
           </h2>
           <p className="mt-4 max-w-xl mx-auto text-muted-foreground leading-relaxed">
-            Have a project in mind or want to collaborate? I'm always open to
-            discussing new opportunities and creative ideas.
+            Have a project in mind or want to collaborate? I'm always open to discussing new
+            opportunities and creative ideas.
           </p>
         </motion.div>
 
@@ -54,7 +105,9 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Email</p>
-                  <p className="text-base font-semibold text-foreground">dimaygugacharleskeane@gmail.com</p>
+                  <p className="text-base font-semibold text-foreground">
+                    dimaygugacharleskeane@gmail.com
+                  </p>
                 </div>
               </div>
 
@@ -84,7 +137,11 @@ export default function ContactSection() {
               <div className="flex gap-3">
                 {[
                   { icon: Github, href: "https://github.com/charlesdimayuga3201", label: "GitHub" },
-                  { icon: Linkedin, href: "https://www.linkedin.com/in/charles-keane-dimayuga-b988a2251/", label: "LinkedIn" },
+                  {
+                    icon: Linkedin,
+                    href: "https://www.linkedin.com/in/charles-keane-dimayuga-b988a2251/",
+                    label: "LinkedIn",
+                  },
                   // { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
                 ].map(({ icon: Icon, href, label }) => (
                   <a
@@ -128,6 +185,7 @@ export default function ContactSection() {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
+                  <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
                   <div className="grid gap-5 sm:grid-cols-2">
                     <div>
                       <label className="mb-1.5 block text-sm font-medium text-foreground">
@@ -135,7 +193,10 @@ export default function ContactSection() {
                       </label>
                       <input
                         type="text"
+                        name="name"
                         required
+                        value={formData.name}
+                        onChange={handleChange}
                         placeholder="Your name"
                         className="w-full rounded-lg border border-input bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                       />
@@ -146,7 +207,10 @@ export default function ContactSection() {
                       </label>
                       <input
                         type="email"
+                        name="email"
                         required
+                        value={formData.email}
+                        onChange={handleChange}
                         placeholder="you@example.com"
                         className="w-full rounded-lg border border-input bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                       />
@@ -159,7 +223,10 @@ export default function ContactSection() {
                     </label>
                     <input
                       type="text"
+                      name="subject"
                       required
+                      value={formData.subject}
+                      onChange={handleChange}
                       placeholder="What's this about?"
                       className="w-full rounded-lg border border-input bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                     />
@@ -170,19 +237,31 @@ export default function ContactSection() {
                       Message
                     </label>
                     <textarea
+                      name="message"
                       required
                       rows={5}
+                      value={formData.message}
+                      onChange={handleChange}
                       placeholder="Your message..."
                       className="w-full rounded-lg border border-input bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary resize-none"
                     />
                   </div>
+                  {error && (
+                    <div className="flex items-center gap-2 rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+                      <AlertCircle size={16} />
+                      {error}
+                    </div>
+                  )}
 
                   <button
                     type="submit"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[0_0_20px_oklch(0.6_0.18_250_/_30%)] transition-all hover:shadow-[0_0_30px_oklch(0.6_0.18_250_/_40%)]"
+                    // className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[0_0_20px_oklch(0.6_0.18_250_/_30%)] transition-all hover:shadow-[0_0_30px_oklch(0.6_0.18_250_/_40%)]"
+                    disabled={isLoading}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[0_0_20px_oklch(0.6_0.18_250_/_30%)] transition-all hover:shadow-[0_0_30px_oklch(0.6_0.18_250_/_40%)] disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     <Send size={16} />
-                    Send Message
+                    {/* Send Message */}
+                    {isLoading ? "Sending..." : "Send Message"}
                   </button>
                 </form>
               )}
